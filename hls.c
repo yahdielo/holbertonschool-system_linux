@@ -9,20 +9,30 @@
 
 int main(int argc, char *argv[]){
 
-   DIR *dir = opendir((const char *)'.');
-   struct dirent *dp;
+    //const char *path = getenv("PATH");
+    DIR *dir;
+    const char *path;
+    struct dirent *dp;
 
-   if (argc != 2){
-       perror ("Missing Command");
-       exit(1);
-   }
-   if (dir == NULL){
-       perror("Could not open directory");
-       exit(1);
-   }
-   if (strcmp(argv[1], "ls")){
+    if (argc > 1){
+        path = argv[1];
+    }
+    else{
+        path = ".";
+    }
+
+    dir = opendir((const char *)path);
+
+    if (dir == NULL){
+        perror("Could not open directory");
+        exit(1);
+    }
+
+    if (argc < 2){
     while ((dp = readdir(dir)) != NULL) {
-        printf("%s", dp->d_name); 
+        printf("%s \n", dp->d_name); 
         }
-   }
+    }
+    closedir(dir);
+    return 0;
 }
