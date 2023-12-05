@@ -4,12 +4,11 @@
 #include <string.h>
 
 /**
- * this is the profram to replicate the LS command in the shell
+ * this  program replicate the LS command
  */
 
 int main(int argc, char *argv[]){
 
-    //const char *path = getenv("PATH");
     DIR *dir;
     const char *path;
     struct dirent *dp;
