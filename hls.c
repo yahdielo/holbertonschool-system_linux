@@ -14,7 +14,7 @@ int main(int argc, char *argv[]){
     const char *path;
     struct dirent *dp;
 
-    if (argc > 1){
+    if (argv[1]){
         path = argv[1];
     }
     else{
@@ -28,7 +28,7 @@ int main(int argc, char *argv[]){
         exit(1);
     }
 
-    if (argc < 2){
+    if (argc == 2){
     while ((dp = readdir(dir)) != NULL) {
         printf("%s \n", dp->d_name); 
         }
