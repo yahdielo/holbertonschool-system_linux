@@ -27,10 +27,10 @@ int main(int argc, char *argv[]){
         exit(1);
     }
 
-    if (argc == 2){
-    while ((dp = readdir(dir)) != NULL) {
-        printf("%s \n", dp->d_name); 
-        }
+    if (argc){
+        while ((dp = readdir(dir)) != NULL) {
+            printf("%s \n", dp->d_name); 
+            }
     }
     closedir(dir);
     return 0;
