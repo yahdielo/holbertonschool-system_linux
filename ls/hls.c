@@ -11,6 +11,7 @@ int main(int argc, char *argv[]){
 
     DIR *dir;
     char *path;
+    char hidden[] = ".";
     struct dirent *dp;
 
     if (argc == 1){
@@ -19,6 +20,10 @@ int main(int argc, char *argv[]){
         dir = opendir((const char *)path);
 
         while ((dp = readdir(dir)) != NULL){
+
+            if (strchr(dp->d_name, hidden[0])){
+                continue;
+            }
             printf("%s ", dp->d_name);
         }
         printf("\n");
@@ -29,7 +34,12 @@ int main(int argc, char *argv[]){
         if (strcmp(argv[1], "-ls") != 0){
             path = argv[1];
             dir = opendir((const char *)path);
+
             while ((dp = readdir(dir)) != NULL){
+
+                if (strchr(dp->d_name, hidden[0])){
+                continue;
+            }
                 printf("%s ", dp->d_name);
             }
             printf("\n");
@@ -40,9 +50,12 @@ int main(int argc, char *argv[]){
             path = ".";
             dir = opendir((const char *)path);
             while ((dp = readdir(dir)) != NULL){
+
+                if (strchr(dp->d_name, hidden[0])){
+                continue;
+            }
                 printf("%s\n", dp->d_name);
             }
-            printf("\n");
             closedir(dir);
         }
 
