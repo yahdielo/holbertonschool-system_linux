@@ -4,34 +4,48 @@
 #include <string.h>
 
 /**
- * this  program replicate the LS command
+ * this is the profram to replicate the LS command in the shell
  */
 
 int main(int argc, char *argv[]){
 
     DIR *dir;
-    const char *path;
+    char *path;
     struct dirent *dp;
 
-    if (argv[1]){
-        path = argv[1];
-    }
-    else{
+    if (argc == 1){
+
         path = ".";
+        dir = opendir((const char *)path);
+
+        while ((dp = readdir(dir)) != NULL){
+            printf("%s ", dp->d_name);
+        }
+        printf("\n");
+        closedir(dir);
     }
+    else if (argc == 2){
 
-    dir = opendir((const char *)path);
-
-    if (dir == NULL){
-        perror("Could not open directory");
-        exit(1);
-    }
-
-    if (argc){
-        while ((dp = readdir(dir)) != NULL) {
-            printf("%s \n", dp->d_name); 
+        if (strcmp(argv[1], "-ls") != 0){
+            path = argv[1];
+            dir = opendir((const char *)path);
+            while ((dp = readdir(dir)) != NULL){
+                printf("%s ", dp->d_name);
             }
+            printf("\n");
+            closedir(dir);
+        }
+        else {
+
+            path = ".";
+            dir = opendir((const char *)path);
+            while ((dp = readdir(dir)) != NULL){
+                printf("%s\n", dp->d_name);
+            }
+            printf("\n");
+            closedir(dir);
+        }
+
     }
-    closedir(dir);
     return 0;
 }
