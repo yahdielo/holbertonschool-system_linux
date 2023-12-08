@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include "main.h"
 
 /**
  * cmpStrings - function to compare if string are the same
@@ -11,7 +12,7 @@ int cmpStrings(char str[], char str2[])
 {
     unsigned long i;
 
-    if (strlen(str) == strlen(str2)){
+    if (len(str) == len(str2)){
 
         for (i=0; i <= strlen(str); i++){
             if (str[i] != str2[i])
