@@ -10,11 +10,11 @@
  */
 int cmpStrings(char str[], char str2[])
 {
-    unsigned long i;
+    int i;
 
     if (len(str) == len(str2)){
 
-        for (i=0; i <= strlen(str); i++){
+        for (i=0; i <= len(str); i++){
             if (str[i] != str2[i])
                 return -1;
             else

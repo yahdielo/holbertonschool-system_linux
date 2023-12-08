@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <dirent.h>
 #include <string.h>
+#include <errno.h>
 #include "main.h"
 
 /**
@@ -24,9 +25,8 @@ int main(int argc, char *argv[])
 
         while ((dp = readdir(dir)) != NULL) {
 
-            if (checkHidden(dp->d_name) == 0) {
+            if (checkHidden(dp->d_name) == 0)
                 continue;
-            }
             printf("%s ", dp->d_name);
         }
         printf("\n");
@@ -34,7 +34,6 @@ int main(int argc, char *argv[])
     }
     if (argc != 1)
     {
-
        result = checkOption(argc, argv);
        if (result != 0)
        {
@@ -64,13 +63,20 @@ int main(int argc, char *argv[])
                 path = argv[i];
                 dir = opendir((const char *)path);
 
-                printf("%s:\n", path);
+                if (dir == NULL)
+                {
+                    fprintf(stderr,"%s: %s: %s\n", argv[0], path, strerror(errno));
+                    continue;
+                }
+
+                result = checkOption(argc, argv);
+                if (argc != 1 && result != 0)
+                    printf("%s:\n", path);
+
                 while ((dp = readdir(dir)) != NULL) {
 
-                    if (checkHidden(dp->d_name) == 0) {
+                    if (checkHidden(dp->d_name) == 0)
                         continue;
-                    }
-                    
                     printf("%s  ", dp->d_name);
                 }
                 printf("\n");
@@ -78,7 +84,6 @@ int main(int argc, char *argv[])
                     printf("\n");
                 closedir(dir);
             }
-
         }
     }
     return 0;
