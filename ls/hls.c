@@ -8,7 +8,7 @@
  * main - fucntion wish is the mane program
  * @argc: arguiment count
  * @argv: argument vector
- * return: always 0
+ * Return: always 0
  */
 int main(int argc, char *argv[])
 {
