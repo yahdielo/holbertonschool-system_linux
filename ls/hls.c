@@ -2,28 +2,12 @@
 #include <stdlib.h>
 #include <dirent.h>
 #include <string.h>
+#include "main.h"
 
 /**
- * cmpString: compare strings to see if are the same
- * return 0
- */
-int cmpStrings(char str[],char str2[]){
-    unsigned long i;
-
-    if (strlen(str) == strlen(str2)){
-
-        for (i=0; i <= strlen(str); i++){
-            if (str[i] != str2[i])
-                return -1;
-            else
-                return 0;
-        }
-    }
-    return -1;
-}
-/**
- * checkHidden: checks if the file name start with . means in hidden
- * return 0
+ * checkHidden - checks if the file name start with .
+ * @str: name of the file
+ * return: 0 if strat with . and -1 if not
  */
 int checkHidden(char str[]){
 
@@ -37,7 +21,10 @@ int checkHidden(char str[]){
     }
 }
 /**
- * this is the profram to replicate the LS command in the shell
+ * main - fucntion wish is the mane program
+ * @arc: arguiment count
+ * @argv: argument vector
+ * return: always 0
  */
 int main(int argc, char *argv[]){
 
