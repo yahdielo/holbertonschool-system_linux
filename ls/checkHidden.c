@@ -4,9 +4,10 @@
 /**
  * checkHidden - checks if the file name start with .
  * @str: name of the file
- * return: 0 if strat with . and -1 if not
+ * Return: 0 if strat with . and -1 if not
  */
-int checkHidden(char str[]){
+int checkHidden(char str[])
+{
 
     char check[] = ".";
 

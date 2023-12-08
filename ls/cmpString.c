@@ -5,7 +5,7 @@
  * cmpStrings - function to compare if string are the same
  * @str: the firstring
  * @str2: the second string to compare
- * returns: -1 if not the same 0 if its the same
+ * Returns: -1 if not the same 0 if its the same
  */
 int cmpStrings(char str[], char str2[])
 {
