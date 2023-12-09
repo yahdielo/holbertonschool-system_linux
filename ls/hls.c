@@ -65,9 +65,9 @@ int main(int argc, char *argv[])
 
                 if (dir == NULL)
                 {
-                    char str[256];
-                    snprintf(str, sizeof(str), "%s", strerror(errno));
-                    fprintf(stdout, "%s: %s: %s\n",argv[0], path, str);
+                    char error_message[256];
+                    sprintf(error_message, "%s: %s", argv[0], path);
+                    perror(error_message);
                     continue;
                 }
 
