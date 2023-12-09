@@ -65,12 +65,14 @@ int main(int argc, char *argv[])
 
                 if (dir == NULL)
                 {
-                    fprintf(stderr,"%s: %s: %s\n", argv[0], path, strerror(errno));
+                    char str[256];
+                    snprintf(str, sizeof(str), "%s", strerror(errno));
+                    fprintf(stdout, "%s: %s: %s\n",argv[0], path, str);
                     continue;
                 }
 
                 result = checkOption(argc, argv);
-                if (argc != 1 && result != 0)
+                if (argc > 2 && result != 0)
                     printf("%s:\n", path);
 
                 while ((dp = readdir(dir)) != NULL) {
