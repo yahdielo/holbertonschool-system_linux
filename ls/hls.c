@@ -11,10 +11,11 @@
  * @argv: argument vector
  * Return: always 0
  */
+
 int main(int argc, char *argv[])
 {
     int result, i;
-    DIR *dir;
+    DIR *dir, *newDir;
     char *path;
     struct dirent *dp;
 
@@ -65,10 +66,45 @@ int main(int argc, char *argv[])
 
                 if (dir == NULL)
                 {
-                    char error_message[256];
-                    sprintf(error_message, "%s: %s", argv[0], path);
-                    perror(error_message);
-                    continue;
+                    /* if the dir returns null, shop the last file ot dire name
+                        and look if the last token is a file that exist.
+                        if exist return it else print to stdrerr*/
+                    char delimiters[] = "/";
+                    char *tokens[10];  
+                    int tokenCount = 0;
+                    char *lastToken, lasTokenString[10];
+
+                    char *token = strtok(path, delimiters);
+
+                    // Store tokens in an array
+                    while (token != NULL && tokenCount < 10) {
+                        tokens[tokenCount++] = token;
+                        lastToken = token;
+                        token = strtok(NULL, delimiters);
+                    }
+                    strcat(lasTokenString, lastToken);
+
+                    char newString[1000] = "";  
+                    for (int i = 0; i < tokenCount - 1; ++i) {
+                        strcat(newString, tokens[i]);
+                        if (i != tokenCount - 2)
+                            strcat(newString, "/");
+                    }
+                    path = newString;
+                    newDir = opendir((const char *)path);
+                    if(newDir != NULL){
+                        while ((dp = readdir(dir)) != NULL) {
+                            if(cmpStrings(lastToken, dp->d_name) == 0)
+                                printf("%s  ", dp->d_name);
+                        }
+
+                    }else{
+                        char error_message[256];
+                        sprintf(error_message, "%s %s", argv[0], argv[i]);
+                        perror(error_message);
+                        continue;
+
+                    }
                 }
 
                 result = checkOption(argc, argv);

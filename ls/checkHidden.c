@@ -9,7 +9,6 @@
  */
 int checkHidden(char str[])
 {
-
     char check[] = ".";
 
     if ( check[0] == str[0]){
