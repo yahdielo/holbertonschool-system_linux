@@ -64,10 +64,10 @@ int main(int argc, char *argv[])
                 {
                     /* if the dir returns null, shop the last file ot dire name
                         and look if the last token is a file that exist.
-                        if exist return it else print to stdrerr*/
+                        if exist return it else print to stdrerr
                     printf("we enter the dir in NULL");
 
-                    char lastToken[10] = "";
+                    char lastToken[10];
                     char newPath[1000] = "";
                     PathDivide(path, lastToken, newPath);
                    
@@ -88,7 +88,11 @@ int main(int argc, char *argv[])
                         perror(error_message);
                         continue;
 
-                    }
+                    }*/
+                    char error_message[256];
+                    sprintf(error_message, "%s %s", argv[0], argv[i]);
+                    perror(error_message);
+                    continue;
                 }
 
                 result = checkOption(argc, argv);
