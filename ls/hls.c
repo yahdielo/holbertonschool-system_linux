@@ -38,8 +38,7 @@ int main(int argc, char *argv[])
        result = checkOption(argc, argv);
        if (result != 0)
        {
-           printf("deal with the options command TODO\n");
-        /**  this already deal with one option
+        
         if (cmpStrings(argv[1], "-ls") != 0)
         {
             path = argv[1];
@@ -56,7 +55,7 @@ int main(int argc, char *argv[])
             }
             printf("\n");
             closedir(dir);
-        }*/
+        }
         }
         else {
             for ( i = 1; i < argc; i++){
@@ -69,36 +68,24 @@ int main(int argc, char *argv[])
                     /* if the dir returns null, shop the last file ot dire name
                         and look if the last token is a file that exist.
                         if exist return it else print to stdrerr*/
-                    char delimiters[] = "/";
-                    char *tokens[10];  
-                    int tokenCount = 0;
-                    char *lastToken, lasTokenString[10];
+                    printf("we enter the dir in NULL");
 
-                    char *token = strtok(path, delimiters);
-
-                    // Store tokens in an array
-                    while (token != NULL && tokenCount < 10) {
-                        tokens[tokenCount++] = token;
-                        lastToken = token;
-                        token = strtok(NULL, delimiters);
-                    }
-                    strcat(lasTokenString, lastToken);
-
-                    char newString[1000] = "";  
-                    for (int i = 0; i < tokenCount - 1; ++i) {
-                        strcat(newString, tokens[i]);
-                        if (i != tokenCount - 2)
-                            strcat(newString, "/");
-                    }
-                    path = newString;
-                    newDir = opendir((const char *)path);
-                    if(newDir != NULL){
+                    char lastToken[10];  // Adjust the size according to your needs
+                    char newPath[1000] = "";
+                    PathDivide(path, lastToken, newPath);
+                   
+                    newDir = opendir((const char *)newPath);
+                    if (newDir != NULL)
+                    {
                         while ((dp = readdir(dir)) != NULL) {
-                            if(cmpStrings(lastToken, dp->d_name) == 0)
+
+                            if (cmpStrings(lastToken, dp->d_name) == 0)
                                 printf("%s  ", dp->d_name);
+                                continue;
                         }
 
-                    }else{
+                    }
+                    else {
                         char error_message[256];
                         sprintf(error_message, "%s %s", argv[0], argv[i]);
                         perror(error_message);
