@@ -36,26 +36,24 @@ int main(int argc, char *argv[])
     if (argc != 1)
     {
        result = checkOption(argc, argv);
-       if (result != 0)
+       if (result)
        {
-        
-        if (cmpStrings(argv[1], "-ls") != 0)
-        {
-            path = argv[1];
-            dir = opendir((const char *)path);
-
-            while ((dp = readdir(dir)) != NULL)
+            if (cmpStrings(argv[result], "-l") != 0)
             {
+                path = argv[1];
+                dir = opendir((const char *)path);
 
-                if (checkHidden(dp->d_name) == 0)
+                while ((dp = readdir(dir)) != NULL)
                 {
-                    continue;
+                    if (checkHidden(dp->d_name) == 0)
+                    {
+                        continue;
+                    }
+                    printf("%s\n", dp->d_name);
                 }
-                printf("%s ", dp->d_name);
+                printf("\n");
+                closedir(dir);
             }
-            printf("\n");
-            closedir(dir);
-        }
         }
         else {
             for ( i = 1; i < argc; i++){
@@ -70,7 +68,7 @@ int main(int argc, char *argv[])
                         if exist return it else print to stdrerr*/
                     printf("we enter the dir in NULL");
 
-                    char lastToken[10];  // Adjust the size according to your needs
+                    char lastToken[10];
                     char newPath[1000] = "";
                     PathDivide(path, lastToken, newPath);
                    

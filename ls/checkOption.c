@@ -17,8 +17,8 @@ int checkOption(int count, char *str[])
         for (j = 0; j < 1; j++)
         {
             if(str[i][0] == '-')
-                return i + 1;
+                return i;
         }
     }
-    return 0;
+    return -1;
 }

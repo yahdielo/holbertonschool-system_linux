@@ -11,7 +11,7 @@ int PathDivide(char str[], char *lastToken, char *newString) {
 
     // Tokenize the string
     char *tokens[10];  // Assuming a maximum of 10 tokens for simplicity
-    int tokenCount = 0;
+    int tokenCount = 0, i;
 
     char *token = strtok(str, delimiters);
 
@@ -25,7 +25,7 @@ int PathDivide(char str[], char *lastToken, char *newString) {
     strcpy(lastToken, tokens[tokenCount - 1]);
 
     // Exclude the last token when building the new string
-    for (int i = 0; i < tokenCount - 1; ++i) {
+    for (i = 0; i < tokenCount - 1; ++i) {
         strcat(newString, tokens[i]);
         if (i != tokenCount - 2)
             strcat(newString, "/");  // Add "/" between tokens if needed
