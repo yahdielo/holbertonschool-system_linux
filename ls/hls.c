@@ -15,7 +15,7 @@
 int main(int argc, char *argv[])
 {
     int result, i;
-    DIR *dir, *newDir;
+    DIR *dir/*newDir*/;
     char *path;
     struct dirent *dp;
 
