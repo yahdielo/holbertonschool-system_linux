@@ -51,7 +51,6 @@ int main(int argc, char *argv[])
                     }
                     printf("%s\n", dp->d_name);
                 }
-                printf("\n");
                 closedir(dir);
             }
         }
@@ -68,7 +67,7 @@ int main(int argc, char *argv[])
                         if exist return it else print to stdrerr*/
                     printf("we enter the dir in NULL");
 
-                    char lastToken[10];
+                    char lastToken[10] = "";
                     char newPath[1000] = "";
                     PathDivide(path, lastToken, newPath);
                    
