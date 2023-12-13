@@ -17,9 +17,9 @@ int main(void)
     race_state(ids1, 3);
     printf("--\n");
     race_state(ids1, 3);
-    printf("--from this one on it fucks up\n");
+    printf("--\n");
     race_state(ids2, 1);
-    printf("--4\n");
+    printf("--\n");
     race_state(ids2, 1);
     printf("--\n");
     race_state(ids1, 3);

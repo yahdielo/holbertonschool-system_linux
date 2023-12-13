@@ -1,12 +1,8 @@
 #include <stdio.h>
 #include "laps.h"
-#define arrSize 100
 
 /**
- * race_state - track the laps of the race cars using a truc and static memory
- * @id: is the array of cars
- * @size: is the size of the array
- * Return: void
+ * 
  */
 typedef struct {
     size_t id;
@@ -17,7 +13,10 @@ static Car *cars = NULL;
 static size_t num_cars = 0;
 
 /**
- * 
+ * race_state - track the laps of the race cars using a truc and static memory
+ * @id: is the array of cars
+ * @size: is the size of the array
+ * Return: void
  */
 
 void race_state(int *id, size_t size)
@@ -58,6 +57,7 @@ void race_state(int *id, size_t size)
     }
 
     /*print state of the race*/
+    printf("Race state:\n");
     for (i = 0; i < num_cars; i++)
     {
         printf("Car %li [%li laps]\n", cars[i].id, cars[i].laps);
