@@ -5,60 +5,60 @@
 /**
  * 
  */
-void race_state(int *id, size_t size){
-    /*static int laps;*/
-    static size_t cars[arrSize],raceCars = 0, laps = 0;
-    size_t i;
+typedef struct {
+    size_t id;
+    size_t laps;
+} Car;
 
-    /*check if argumemts are not null*/
-    if (id == NULL || size == 0)
+static Car *cars = NULL;
+static size_t num_cars = 0;
+
+/**
+ * 
+ */
+
+void race_state(int *id, size_t size)
+{
+    size_t i, j , carExist;
+
+    if (id == 0)
+    {
+        free(cars);
+        cars = NULL;
+        num_cars = 0;
+        puts("All memory is free");
         return;
+    }
+    /* Allocate memory for the new cars*/
+    cars = realloc(cars, (num_cars + size) * sizeof(Car));
 
-    /*initital insert ids in to the carr array*/
-    if (raceCars == 0)
+    for (i = 0; i < size; i++)
     {
-        for (i = 0; i < size; i++){
-        
-            if(cars[i] != (size_t)id[i])
+         carExist = 0;
+        for (j = 0; j < num_cars; j++)
+        {
+            /*if we enter this if it means the car already exist*/
+            if (cars[j].id == (size_t)id[i])
             {
-                cars[i] = (size_t)id[i];
-                printf("Car %li joined the race\n", cars[i]);
-                raceCars += 1;
+                cars[j].laps++;
+                carExist = 1;
+                break;
             }
         }
-        printf("Race state:\n");
-        for (i = 0; i <= raceCars - 1 ; i++)
+
+        if (!carExist)
         {
-            printf("Car %li [%li laps]\n",cars[i], laps);
+            cars[num_cars].id = id[i];
+            cars[num_cars].laps = 0;
+            num_cars++;
+            printf("Car %li joined the race\n", cars[i].id);
         }
-    }
-    /*if we already have race cars i want to only add the new ones*/
-    if (raceCars > 0)
-    {
-        printf("we enter second if %li\n", raceCars);
-        for (i = 0; i < raceCars; i++){
-            /*i need this safe guard statement because some how im adding A BUNCH O RANDOM NUMBERS AS CARS*/
-            if (cars[i] > 0 && cars[i] != 0)
-            {
-                if(cars[i] != (size_t)id[i])
-                {
-                    cars[i] = (size_t)id[i];
-                    printf("car %li joined the race\n", cars[i]);
-                    raceCars += 1;
-                }
-            }
-        }
-        laps += 1;
-        printf("Race state:\n");
-        for (i = 0; i <= raceCars - 1 ; i++)
-        {
-            if (cars[i] > 0 && cars[i] != 0)
-                printf("Car %li [%li laps]\n",cars[i], laps);
-        }
-        
     }
 
-    /*if carsize is not 0 meaning we already initialize the race
-    we need push the new added cars with out overide the olds data*/
-    
+    /*print state of the race*/
+    for (i = 0; i < num_cars; i++)
+    {
+        printf("Car %li [%li laps]\n", cars[i].id, cars[i].laps);
+    }
+    printf("\n");
 }
