@@ -4,7 +4,8 @@
 /**
  * 
  */
-typedef struct {
+typedef struct
+{
     size_t id;
     size_t laps;
 } Car;
@@ -21,7 +22,7 @@ static size_t num_cars = 0;
 
 void race_state(int *id, size_t size)
 {
-    size_t i, j , carExist;
+    size_t i, j, carExist;
 
     if (id == 0)
     {
@@ -53,6 +54,19 @@ void race_state(int *id, size_t size)
             cars[num_cars].laps = 0;
             num_cars++;
             printf("Car %li joined the race\n", cars[i].id);
+        }
+    }
+    /* sort ids in acending oreder*/
+    for ( i = 0; i < num_cars - 1; i++)
+    {
+        for (j = i + 1; j < num_cars - 1 - i; j++)
+        {
+            if (cars[j].id > cars[j + 1].id)
+            {
+                Car temp = cars[j];
+                cars[j] = cars[j + 1];
+                cars[j + 1] = temp;
+            }
         }
     }
 
