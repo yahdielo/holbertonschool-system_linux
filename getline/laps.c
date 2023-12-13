@@ -60,7 +60,10 @@ void race_state(int *id, size_t size)
     printf("Race state:\n");
     for (i = 0; i < num_cars; i++)
     {
-        printf("Car %li [%li laps]\n", cars[i].id, cars[i].laps);
+        if ( i < num_cars - 1)
+            printf("Car %li [%li laps]\n", cars[i].id, cars[i].laps);
+        else
+             printf("Car %li [%li laps]", cars[i].id, cars[i].laps);
     }
     printf("\n");
 }
