@@ -8,33 +8,13 @@
 int main(void)
 {
 
-    int ids1[3] = {1, 42, 101};
-    int ids2[1] = {11};
-
-    race_state(ids1, 3);
-    printf("--\n");
+    int ids[3] = {89, 2, 102};
+    int i;
     
-    race_state(ids1, 3);
-    printf("--\n");
-    race_state(ids1, 3);
-    printf("--\n");
-    race_state(ids2, 1);
-    printf("--\n");
-    race_state(ids2, 1);
-    printf("--\n");
-    race_state(ids1, 3);
-    printf("--\n");
-    race_state(ids2, 1);
-    printf("--\n");
-    race_state(ids1, 3);
-    printf("--\n");
-    race_state(ids2, 1);
-    printf("--\n");
-    race_state(ids1, 3);
-    printf("--\n");
-    race_state(ids2, 1);
-    printf("--\n");
+    for (i = 0 ; i < 10 ; i ++) 
+    {
+      race_state(ids, 3);
+    }
     race_state(NULL, 0);
-
     return (0);
 }
