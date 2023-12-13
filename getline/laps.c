@@ -56,18 +56,15 @@ void race_state(int *id, size_t size)
             printf("Car %li joined the race\n", cars[i].id);
         }
     }
-    // Sort cars by identifier
     for (i = 0; i < num_cars - 1; ++i) {
         for (j = 0; j < num_cars - 1 - i; ++j) {
             if (cars[j].id > cars[j + 1].id) {
-                // Swap cars
                 Car temp = cars[j];
                 cars[j] = cars[j + 1];
                 cars[j + 1] = temp;
             }
         }
     }
-
     /*print state of the race*/
     printf("Race state:\n");
     for (i = 0; i < num_cars; i++)
