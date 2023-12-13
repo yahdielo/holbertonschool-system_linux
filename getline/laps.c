@@ -29,7 +29,6 @@ void race_state(int *id, size_t size)
         free(cars);
         cars = NULL;
         num_cars = 0;
-        puts("All memory is free");
         return;
     }
     /* Allocate memory for the new cars*/
