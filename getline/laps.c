@@ -3,7 +3,10 @@
 #define arrSize 100
 
 /**
- * 
+ * race_state - track the laps of the race cars using a truc and static memory
+ * @id: is the array of cars
+ * @size: is the size of the array
+ * Return: void
  */
 typedef struct {
     size_t id;
