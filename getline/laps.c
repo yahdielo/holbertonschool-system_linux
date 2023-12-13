@@ -56,7 +56,6 @@ void race_state(int *id, size_t size)
             printf("Car %li joined the race\n", cars[i].id);
         }
     }
-    /* sort ids in acending oreder*/
     for ( i = 0; i < num_cars - 1; i++)
     {
         for (j = i + 1; j < num_cars - 1 - i; j++)
