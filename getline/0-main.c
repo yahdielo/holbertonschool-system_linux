@@ -5,16 +5,22 @@
  *
  * Return: always 0.
  */
-int main(void)
+int main()
 {
 
-    int ids[3] = {89, 2, 102};
-    int i;
+    int ids1[2] = {2, 89};
+    int ids2[1] = {102};
     
-    for (i = 0 ; i < 10 ; i ++) 
-    {
-      race_state(ids, 3);
-    }
+    race_state(ids1, 2);
+    race_state(ids1, 2);
+    race_state(ids1, 2);
+    race_state(ids1, 2);
+    puts("from here it fucks up");
+    race_state(ids2, 1);
+    race_state(ids1, 2);
+    race_state(ids1, 2);
+    race_state(ids2, 1);
+    
     race_state(NULL, 0);
     return (0);
 }

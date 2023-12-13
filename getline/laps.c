@@ -50,10 +50,10 @@ void race_state(int *id, size_t size)
 
         if (!carExist)
         {
-            cars[num_cars].id = id[i];
+            cars[num_cars].id = (size_t)id[i];
             cars[num_cars].laps = 0;
             num_cars++;
-            printf("Car %li joined the race\n", cars[i].id);
+            printf("Car %i joined the race\n", id[i]);
         }
     }
     for (i = 0; i < num_cars - 1; ++i) {
