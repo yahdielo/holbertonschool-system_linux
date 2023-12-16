@@ -26,7 +26,7 @@ char *_getline(const int fd)
 
     for (i = 0; i < buffLen; ++i) {
         line[i] = buff[i];
-        if (line[i] == EOF)
+        if (line[i] == 1)
             break;
     }
     line[buffLen] = '\0';
