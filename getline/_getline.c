@@ -8,7 +8,7 @@ char *_getline(const int fd)
     static size_t buffLen = 0;
     ssize_t bytesRead;
     char *line;
-    size_t i
+    size_t i;
 
     if(buffLen == 0)
     {
