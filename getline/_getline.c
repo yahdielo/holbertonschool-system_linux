@@ -42,11 +42,14 @@ char *_getline(const int fd)
     }
     /*null terminate the line*/
     buff[newLinePos] = '\0';
-    /*the reset boffer is needed to start the boffer back again from 0, to correctly start allocating the new line*/
+    /* Ones the chunk of data from  the buffer before the new line is allocated,
+        and we still have some data in the buffer, we need to reset the buffer to start from 0,
+        to correctly allocate the new line, in a new line when printing it.*/
     restetBuff = buffLen - newLinePos - 1;
+    line = realloc(line, restetBuff + 1);
     for( i = 0; i < newLinePos; ++i)
     {
-        buff[i] = buff[newLinePos + 1 + i];
+        line[i] = buff[newLinePos + 1 + i];
     }
 
     buffLen =  restetBuff;
