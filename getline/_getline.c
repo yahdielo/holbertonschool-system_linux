@@ -8,7 +8,7 @@ char *_getline(const int fd)
     static size_t buffLen = 0;
     ssize_t bytesRead;
     char *line;
-    size_t i;
+    size_t i, newLinePos = 0;
 
     if(buffLen == 0)
     {
@@ -18,6 +18,11 @@ char *_getline(const int fd)
         }
         buffLen = (size_t)bytesRead;
     }
+    while (newLinePos < buffLen && buff[newLinePos] != '\n')
+    {
+        newLinePos++;
+    }
+
     line = malloc(buffLen + 1);
     if (line == NULL) {
         perror("Error allocating memory");
@@ -26,8 +31,7 @@ char *_getline(const int fd)
 
     for (i = 0; i < buffLen; ++i) {
         line[i] = buff[i];
-        if (line[i] == 1)
-            break;
+
     }
     line[buffLen] = '\0';
     buffLen = 0;
