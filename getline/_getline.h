@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
-#define READ_SIZE 64
+#define READ_SIZE 100
 
 char *_getline(const int fd);
 
